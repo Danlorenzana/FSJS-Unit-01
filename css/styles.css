@@ -101,20 +101,20 @@ h1 {
   content: "—";
 }
 
-.episode {
+.citation {
   font-style: italic;
 }
 
-.episode:before {
+.citation:before {
   content: ", ";
   font-style: normal;
 }
 
-.season:before {
+.year:before {
   content: ", ";
   font-style: normal;
 }
-.writer:before {
+.headWriter:before {
   content: " ";
   font-style: normal;
 }
