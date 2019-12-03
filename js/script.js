@@ -3,12 +3,7 @@ Treehouse FSJS Techdegree:
 project 1 - A Random Quote Generator
 ******************************************/
 
-// For assistance: 
-  // Check the "Project Resources" section of the project instructions
-  // Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
-
-// We list all global variables at the top.
-// An array with a random choosing of Seinfeld lines. 
+// An array of objects containing 'gold' Seinfeld lines. 
 var quotes = [
   {
     quote: 'That\'s a shame...', 
@@ -16,61 +11,73 @@ var quotes = [
     season: '', 
     episode: '' 
   },
-  {
-    quote: 'Cooking up some Cordaroy', 
+  { quote: 'Kramer\'s cooking up some corduroy', 
     source: 'Jerry', 
-    season: '', 
-    episode: 'The Calzone'
+    episode: 'The Calzone', 
+    season: '7'
   },
-  {
-    quote: 'It\'s go time!', 
-    source: 'Mandelbaum', 
-    season: '8', 
-    episode: 'The Blood'
-  },
-  {
-    quote: 'Oh the humanity!', 
-    source: 'Newman', 
-    season: '9', 
-    episode: 'The Pothole'
-  },
-  {
-    quote: 'But I don\'t want to be a pirate!!', 
-    source: '5b', 
-    season: '', 
-    episode: 'The Puffy Shirt'
-  },
-  {
-    quote: 'Now for the feats of strength', 
-    source: 'Frank', 
-    season: '', 
-    episode: 'The Festivus'
-  },
-  {
-    quote: 'No soup for you!!', 
-    source: 'Soup Nazi', 
-    season: '', 
-    episode: 'The Soup Nazi'
-  },
-  {
-    quote: 'All aboard the pain train.', 
+  { quote: 'Drop your purse, and pick up that medicine ball.', 
     source: 'Izzy Mandelbaum', 
-    season: '', 
-    episode: 'The Blood'
+    episode: 'The Blood', 
+    season: '9'
   },
-  {
-    quote: 'Fredo was a stupid bird!', 
+  { quote: 'You\'re a Man\'s Woman. You hate other women, and they hate you.', 
     source: 'Kramer', 
-    season: '', 
-    episode: 'The Safe'
+    episode: 'The Pool Guy', 
+    season: '9'
+  },
+  { quote: 'But, I don\'t want to be a pirate!', 
+    source: 'Jerry', 
+    episode: 'The Puffy Shirt', 
+    season: '5'
+  },
+  { quote: 'Festivus begins with the airing of grievances. I got a lot of problems with you people! And now you\'re gonna hear about it!', 
+    source: 'Frank', 
+    episode: 'The Strike', 
+    season: '9'
+  },
+  { quote: 'No soup for you!!', 
+    source: 'Soup Nazi', 
+    episode: 'The Soup Nazi', 
+    season: '7'
+  },
+  { quote: 'I\'m Cosmo Kramer, the Assman!', 
+    source: 'Kramer', 
+    episode: 'The Fusilli Jerry', 
+    season: '6'
+  },
+  { quote: 'Because I chose not to run!', 
+    source: 'Jerry', 
+    episode: 'The Race', 
+    season: '6'
+  },
+  { quote: 'We had a pact!', 
+    source: 'George', 
+    episode: '', 
+    season: '7'
+  },
+  { quote: 'You already have an in. You have the same first name. Jerry.', 
+    source: 'George', 
+    episode: 'The Strongbox', 
+    season: '9'
   }
 ];
 var message = ' ';
+
 // Function generates random number and is assigned to select an object from 'quotes'variable 
 function getRandomQuote (){
   var randomNumber = Math.floor(Math.random() * quotes.length ); 
   var randomQuote = quotes[randomNumber] ;
   return randomQuote;
+}
+// Function generates a random hexadecimal color with 'JavaScript Basics' [my] level code -> https://stackoverflow.com/questions/1484506/random-color-generator
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
 }
 /*  
 The 'getRandomQuote' is formated to HTML code (only with the available data).  
@@ -80,17 +87,20 @@ function printQuote (){
     var quote = getRandomQuote () ;
     var report = '<p class="quote">' + quote.quote + '</p>';
     report += '<p class="source">' + quote.source ;
-    if (quote.season !== '' ) {
-      report += '<span class="citation"> season ' + quote.season + '</span>'; 
-    } if (quote.episode !== '' ) {
-        report += '<span class="year"> episode: "' + quote.episode + '"</span>';
+    if (quote.episode !== '' ) {
+      report += '<span class="citation"> ' + quote.episode + '</span>'; 
+    } if (quote.season !== '' ) {
+        report += '<span class="year"> season ' + quote.season + '</span>';
       }
     report += '</p>';
     var outputDiv = document.getElementById('quote-box');
     outputDiv.innerHTML = report;
-    var bgColor = document.getElementsByTagName("body").style.color = "blue";  // TRYING to figure this out
+
+// Adds in-line CSS to style the background color of the 'body' tag -> https://www.w3schools.com/jsref/prop_html_style.asp     
+    var bgColor = document.getElementsByTagName("BODY")[0].style.backgroundColor = getRandomColor();
 }
-// Auto-refresh the quote using setInterval() to run printQuote every 20sec
+
+// Auto-refresh the printQuote function using setInterval() to run every 20sec
 setInterval(printQuote , 20000)
 
 /***
