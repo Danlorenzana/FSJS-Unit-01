@@ -63,6 +63,7 @@ var quotes = [
   }
 ];
 var message = ' ';
+var quoteReload ;
 
 // Function generates random number and is assigned to select an object from 'quotes'variable 
 function getRandomQuote (){
@@ -95,14 +96,22 @@ function printQuote (){
     report += '</p>';
     var outputDiv = document.getElementById('quote-box');
     outputDiv.innerHTML = report;
-
+// Stops the setInterval(); to prevent interuption.       
+    stopQuote() ; 
+// Restarts the changeQuote() from 0 secs; the two back-to-back functions reset the interval.     
+    changeQuote ();
 // Adds in-line CSS to style the background color of the 'body' tag -> https://www.w3schools.com/jsref/prop_html_style.asp     
     var bgColor = document.getElementsByTagName("BODY")[0].style.backgroundColor = getRandomColor();
 }
-
-// Auto-refresh the printQuote function using setInterval() to run every 20sec
-setInterval(printQuote , 20000)
-
+// Auto-refresh the printQuote to run every 20sec.
+function changeQuote() {
+  quoteReload = setInterval(printQuote , 20000)
+}
+// Stops the set 'quoteReload' interval. 
+function stopQuote() {
+  clearInterval(quoteReload);
+}
+changeQuote();
 /***
  * click event listener for the print quote button
  * DO NOT CHANGE THE CODE BELOW!!
