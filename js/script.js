@@ -130,7 +130,7 @@ function getRandomQuote (){
   var randomQuote = quotes[randomNumber] ;
   return randomQuote;
 }
-/*  Function generates a random hexadecimal color with 'JavaScript Basics' [my] level code
+/*  Function generates a random hexadecimal color with 'JavaScript Basics' [my] level code that I found here:
     -> https://stackoverflow.com/questions/1484506/random-color-generator */
 function getRandomColor() {
   var letters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'];
